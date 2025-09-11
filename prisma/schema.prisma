@@ -14,10 +14,24 @@ datasource db {
 }
 
 
-model user{
+model User{
   id         Int       @id @default(autoincrement())
   name       String?
   email      String    @unique
   password   String?
   created_at DateTime  @default(now())
+  tasks      Task[]
+}
+
+model Task{
+  id          Int       @id @default(autoincrement())
+  title       String    
+  description String?
+  due_date    DateTime?
+  status      String    @default("pending") // pending, in-progress, done
+  created_at  DateTime  @default(now())
+
+
+  userId     Int
+  user       User       @relation(fields: [userId], references: [id])
 }
