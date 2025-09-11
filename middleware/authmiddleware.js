@@ -3,7 +3,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 function authMiddleware(req, res, next){
-    const authHeader = req.header('Authorisation');
+    const authHeader = req.header('Authorization');
+    
+
     
     const token = authHeader && authHeader.split(' ')[1];
 
