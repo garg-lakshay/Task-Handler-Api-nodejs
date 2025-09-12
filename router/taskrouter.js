@@ -34,9 +34,40 @@ router1.get('/',authMiddleware,async (req,res)=>{
     }
 });
 
+router1.put('/:id',authMiddleware,async (req,res)=>{
+    try{
+        const {id} = req.params
+        const {title,description ,due_date,status} = req.body
+
+        const task = await prisma.task.updateMany({
+            where:{
+                id : parseInt(id),
+                userId: req.user.id
+            },
+            data: {
+                title,
+                description,
+                due_date: due_date ? new Date(due_date) : null,
+                status,
+            },
+        });
+        if(task.count==0){
+            res.status(404).json({ message: "Task not found or not authorized"})
+        }
+
+        res.json({ message: "✅ Task updated successfully"})
+    }
+
+    catch(err){
+        console.error("❌ Error in PUT /tasks/:id:", err);
+        res.status(500).json({error: "Failed to update task"})
+
+    }
+});
 
 
 
+        
 
 
 export default router1;
