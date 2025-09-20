@@ -63,6 +63,17 @@ const AppContent: React.FC = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
+      
+      {/* Footer with author name */}
+      <footer className="bg-white border-t border-gray-200 mt-auto">
+        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-sm text-gray-600">
+              Task Handler API by <span className="font-semibold text-gray-900">Lakshay Garg</span>
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
