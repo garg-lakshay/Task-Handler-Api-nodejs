@@ -21,6 +21,7 @@ router1.post('/', authMiddleware, async (req, res)=>{
     }
 });
 
+
 router1.get('/',authMiddleware,async (req,res)=>{
     try{
         const tasks = await prisma.task.findMany({
